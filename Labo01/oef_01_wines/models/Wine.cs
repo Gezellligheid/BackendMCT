@@ -4,6 +4,7 @@ namespace oef_01_wines.models
 {
     public class Wine
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public int Year { get; set; }
         public string Color { get; set; }
