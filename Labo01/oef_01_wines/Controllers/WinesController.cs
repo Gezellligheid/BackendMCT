@@ -33,7 +33,7 @@ namespace oef_01_wines.Controllers
 
         [HttpGet]
         [Route("")]
-        public IActionResult GetWines(){
+        public ActionResult GetWines(){
             try
             {
                 return new OkObjectResult(_wines);
@@ -47,7 +47,7 @@ namespace oef_01_wines.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult PostWine(Wine wine){
+        public ActionResult PostWine(Wine wine){
             try
             {
                 wine.Id = _wines.Count + 1;
@@ -64,7 +64,7 @@ namespace oef_01_wines.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult DeleteWine(int id){
+        public ActionResult DeleteWine(int id){
             // Find object with id x
             Wine _wine = _wines.Find(delegate(Wine w){
                 return w.Id == id;
@@ -85,7 +85,7 @@ namespace oef_01_wines.Controllers
 
         [HttpPut]
         [Route("")]
-        public IActionResult PutWine(Wine wine){
+        public ActionResult PutWine(Wine wine){
             // Find object with id x
             Wine _wine = _wines.Find(delegate(Wine w){
                 return w.Id == wine.Id;
