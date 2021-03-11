@@ -98,7 +98,7 @@ Add endpoint to version
     [MapToApiVersion("2.0")]
 
 
-##Cahching
+## Cahching
 
 in `ConfigureServices()`
 
