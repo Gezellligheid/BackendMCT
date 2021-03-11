@@ -8,7 +8,7 @@ WORKDIR /src
 COPY ["RegistrationAPI.csproj", "./"]
 RUN dotnet restore "RegistrationAPI.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/."   
 RUN dotnet build "RegistrationAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish

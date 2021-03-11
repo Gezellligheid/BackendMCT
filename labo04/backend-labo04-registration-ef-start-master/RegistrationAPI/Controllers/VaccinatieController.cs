@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Globalization;
 using Microsoft.Extensions.Options;
-
+using RegistrationAPI.data;
+using Microsoft.EntityFrameworkCore;
+using RegistrationAPI.Services;
 
 namespace RegistrationAPI.Controllers
 {
@@ -19,35 +21,38 @@ namespace RegistrationAPI.Controllers
     public class VaccinatieController : ControllerBase
     {
 
-        public VaccinatieController()
+        private IRegistrationService _registrationService;
+        public VaccinatieController(IRegistrationService registrationService)
         {
- 
+            _registrationService = registrationService;
         }
 
 
         [HttpGet]
         [Route("/locations")]
-        public List<VaccinationLocation> GetLocations(){
-            return null;
+        public async Task<List<VaccinationLocation>> GetLocations(){
+            return await _registrationService.GetLocations();
         }
 
         [HttpGet]
         [Route("/vaccins")]
-        public List<VaccinType> GetVaccins(){
-            return null;
+        public async Task<List<VaccinType>> GetVaccins(){
+            return await _registrationService.GetTypes();
         }
 
         [HttpGet]
         [Route("/registrations")]
-        public ActionResult<List<VaccinationRegistration>> GetRegistrations(string date = ""){
-            return Ok();
+        public async Task<ActionResult<List<VaccinationRegistration>>> GetRegistrations(string date = ""){
+            return await _registrationService.GetRegistrations();
         }
 
         [HttpPost]
         [Route("/registration")]
-        public ActionResult<VaccinationRegistration> AddRegistration(VaccinationRegistration registration){
-            
-            return null;
+        public async Task<ActionResult<VaccinationRegistration>> AddRegistration(VaccinationRegistration registration){
+            return new OkObjectResult(null);
+            // await _context.VaccinationRegistrations.AddAsync(registration);
+            // await _context.SaveChangesAsync();
+            // return registration;
         }
 
     }

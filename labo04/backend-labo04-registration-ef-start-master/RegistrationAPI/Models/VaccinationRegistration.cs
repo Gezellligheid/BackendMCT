@@ -28,6 +28,8 @@ namespace RegistrationAPI.Models
         [Required]
         public Guid VaccinTypeId { get; set; }
 
+        public VaccinType VaccinType { get; set; }
+
         [Required]
         public Guid VaccinationLocationId { get; set; }
         

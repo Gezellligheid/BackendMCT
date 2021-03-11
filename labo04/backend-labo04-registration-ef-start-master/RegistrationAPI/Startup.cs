@@ -15,6 +15,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using RegistrationAPI.Configuration;
 using RegistrationAPI.data;
+using RegistrationAPI.Repositories;
+using RegistrationAPI.Services;
 
 namespace RegistrationAPI
 {
@@ -36,6 +38,15 @@ namespace RegistrationAPI
 
         
             services.AddControllers();
+
+            services.AddTransient<IRegistrationContext, RegistrationContext>();
+            services.AddTransient<IVaccinTypeRepository, VaccinTypeRepository>();
+
+            services.AddTransient<IVaccinLocationRepository, VaccinLocationRepository>();
+            services.AddTransient<IVaccinRegistrationRepository, VaccinRegistrationRepository>();
+
+            services.AddTransient<IRegistrationService, RegistrationService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RegistrationAPI", Version = "v1" });
@@ -48,10 +59,10 @@ namespace RegistrationAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RegistrationAPI v1"));
+                
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RegistrationAPI v1"));     
             app.UseHttpsRedirection();
 
             app.UseRouting();
