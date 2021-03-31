@@ -167,7 +167,7 @@ In `Startup.cs` add the following line in the `ConfigureServices()`</br>
 
       }
 
-      public override void OnConfiguring(DbContextOptionsBuilder options) {
+      protected override void OnConfiguring(DbContextOptionsBuilder options) {
 
 
 
@@ -196,7 +196,7 @@ In `Startup.cs` add the following line in the `ConfigureServices()`</br>
 When all your models have a DbSet in the Context. It's then time to put all changes in the database.
 
     ```
-    dotnet ef migrate "migration name"
+    dotnet ef migrations add "migration name"
     dotnet ef database update
     ```
 
