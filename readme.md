@@ -163,7 +163,7 @@ In `Startup.cs` add the following line in the `ConfigureServices()`</br>
       // Constructor
       public Context(DbContextOptions<Context> FileOptions, IOptions<ConnectionStrings> connectionStrings) {
 
-        _connectionStrings = connectionStrings;
+        _connectionStrings = connectionStrings.Value;
 
       }
 
